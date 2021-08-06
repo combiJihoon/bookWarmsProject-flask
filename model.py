@@ -1,4 +1,5 @@
-from db_connect import db
+from app import db
+from sqlalchemy import Column, String, Integer, Sequence, DateTime
 from datetime import datetime
 
 
@@ -27,7 +28,7 @@ class Post(db.Model):
     user_id = db.Column(db.String(50), db.ForeignKey(
         'user.id'), nullable=False)
     content = db.Column(db.Text(), nullable=False)
-    created_at = db.Column(db.Datetime, default=datetime.utcnow())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __init__(self, user_id, content):
         self.user_id = user_id

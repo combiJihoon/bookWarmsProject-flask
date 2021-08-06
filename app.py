@@ -1,9 +1,10 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 import config
 import secrets
-from db_connect import db
+
+db = SQLAlchemy()
 
 
 def create_app():
