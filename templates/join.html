@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='join.css') }}">
+{% endblock style %}
+{% block content %}
+<div class="container">
+    <form id="signup" action="{{url_for('main.join')}}" method="post">
+        <div class="header">
+            <h3>회원가입</h3>
+        </div>
+        <div class="sep"></div>
+        <div class="inputs">
+            <input type="id" placeholder="아이디를 입력하세요." name="user_id" autofocus />
+            <input type="password" placeholder="비밀번호를 입력하세요." name="user_pw" />
+            <input type="email" placeholder="이메일을 입력하세요." name="user_email" />
+            <input type="text" placeholder="닉네임을 입력하세요." name="user_nickname" />
+            <input id="submit" type="submit" value="가입하기">
+        </div>
+    </form>
+​</div>
+{% endblock content %}

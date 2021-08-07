@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block style %}{% endblock style %}
     <title>책벌레</title>
 </head>
 <body>
     <header>
         <h2>책벌레</h2>
+        <nav>
+            {% block nav %}{% endblock nav %}
+        </nav>
     </header>
+    <div>
+        {% block content %}{% endblock content %}
+    </div>
 </body>
 </html>

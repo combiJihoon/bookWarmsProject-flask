@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block style %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% endblock style %}
+{% block content %}
+    <div class="wrapper">
+        <form class="form-signin" action="{{url_for('main.login')}}" method="post">
+            <h2 class="form-signin-heading">로그인 하기</h2>
+            <input type="text" class="form-control" name="user_id" placeholder="아이디를 입력하세요" required=""
+                autofocus="" />
+            <input type="password" class="form-control" name="user_pw" placeholder="비밀번호를 입력하세요" required="" />
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+            </label>
+            <input class="btn btn-primary" type="submit" value="로그인">
+        </form>
+    </div>
+{% endblock content %}
