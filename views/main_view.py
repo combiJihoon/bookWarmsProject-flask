@@ -16,16 +16,31 @@ def home():
 @bp.route('/post/<int:post_id>', methods=['GET'])
 def post_detail(post_id):
     post_data = Post.query.filter_by(id=post_id).first()
-    return render_template('post_detail', post_data=post_data)
+    return render_template('post_detail.html', post_data=post_data)
 
 
+@bp.route('/create_post', methods=['POST'])
 def create_post():
+    content = request.form['content']
+    # join 이용해 닉네임으로 고치기
+    user_id = session['user_id']
+
+    post = Post(user_id, content)
+
+    db.session.add(post)
+    db.session.commit()
+
+    return redirect(url_for('main.post_detail', post_id=post.id))
 
 
-def update_post():
+@bp.route('/create_post', methods=['GET'])
+def create_try():
+    return render_template('post_create.html')
+
+# def update_post():
 
 
-def delete_post():
+# def delete_post():
 
     # 로그인 기능 구현
     # @bp.before_app_request
