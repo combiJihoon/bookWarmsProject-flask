@@ -1,5 +1,5 @@
 # 7/14 수요일 실습 강의 참고하기
-from flask import Blueprint, render_template, redirect, url_for, request, session, flash, g
+from flask import Blueprint, render_template, url_for, request, session, flash, g
 from model import *
 from werkzeug.utils import redirect
 from bcrypt import hashpw, checkpw, gensalt
@@ -9,22 +9,32 @@ bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def home():
-    return render_template('index.html')
+    post_list = Post.query.order_by(Post.created_at.desc()).all()
+    return render_template('index.html', post_list=post_list)
 
 
-@bp.route('/post', methods=['GET'])
-def post():
-    return render_template('index.html')
+@bp.route('/post/<int:post_id>', methods=['GET'])
+def post_detail(post_id):
+    post_data = Post.query.filter_by(id=post_id).first()
+    return render_template('post_detail', post_data=post_data)
 
 
-# 로그인 기능 구현
-# @bp.before_app_request
-# def load_logged_in_user():
-#     user_id = session['user_id']
-#     if user_id is None:
-#         g.user = None
-#     else:
-#         g.user = User.query.filter_by(user_id=user_id).first()
+def create_post():
+
+
+def update_post():
+
+
+def delete_post():
+
+    # 로그인 기능 구현
+    # @bp.before_app_request
+    # def load_logged_in_user():
+    #     user_id = session['user_id']
+    #     if user_id is None:
+    #         g.user = None
+    #     else:
+    #         g.user = User.query.filter_by(user_id=user_id).first()
 
 
 @bp.route('/login', methods=('GET',))
@@ -75,7 +85,10 @@ def register():
     # 등록된 사용자가 아닐 경우 가입 시작
     if not user:
         tmp_pw = request.form['user_pw']
-        # 패스워드 해쉬
+        if len(tmp_pw) < 8:
+            flash('비밀번호는 9자리 이상이어야 합니다.')
+            return redirect(url_for('main.join'))
+            # 패스워드 해쉬
         user_pw = hashpw(tmp_pw.encode('utf-8'), gensalt())
         user_nickname = request.form['user_nickname']
         user_email = request.form['user_email']
