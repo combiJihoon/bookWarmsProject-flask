@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+<h2>글귀 목록</h2>
+
+{% for post in post_list %}
+<ul>
+    <a href="{{ url_for('main.post_detail')}}">
+        <li>{{post}}</li>
+    </a>
+</ul>
+{% endfor %}

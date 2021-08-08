@@ -13,6 +13,9 @@
     <header>
         <nav class="navbar navbar-expand-sm bg-light mt-3">
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.home')}}">책벌레</a>
+                </li>
                 {% if session['user_id'] %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">반갑습니다, {{session['user_nickname']}}님!</a>
@@ -29,7 +32,6 @@
                     </li>
                 {% endif %}
             </ul>
-
         </nav>
     </header>
     <div>
