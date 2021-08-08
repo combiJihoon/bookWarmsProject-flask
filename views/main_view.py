@@ -1,5 +1,5 @@
 # 7/14 수요일 실습 강의 참고하기
-from flask import Blueprint, render_template, redirect, url_for, request, session, flash
+from flask import Blueprint, render_template, redirect, url_for, request, session, flash, g
 from model import *
 from werkzeug.utils import redirect
 from bcrypt import hashpw, checkpw, gensalt
@@ -15,6 +15,16 @@ def home():
 @bp.route('/post', methods=['GET'])
 def post():
     return render_template('index.html')
+
+
+# 로그인 기능 구현
+# @bp.before_app_request
+# def load_logged_in_user():
+#     user_id = session['user_id']
+#     if user_id is None:
+#         g.user = None
+#     else:
+#         g.user = User.query.filter_by(user_id=user_id).first()
 
 
 @bp.route('/login', methods=('GET',))

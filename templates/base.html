@@ -4,14 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
     {% block style %}{% endblock style %}
     <title>책벌레</title>
 </head>
 <body>
+    <h1 class="d-flex justify-content-center mx-auto mt-5">책벌레</h1>
     <header>
-        <h2>책벌레</h2>
-        <nav>
-            {% block nav %}{% endblock nav %}
+        <nav class="navbar navbar-expand-sm bg-light mt-3">
+            <ul class="navbar-nav">
+                {% if session['user_id'] %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">반갑습니다, {{session['user_nickname']}}님!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.logout') }}">로그아웃</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.login') }}">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.join') }}">회원가입</a>
+                    </li>
+                {% endif %}
+            </ul>
+
         </nav>
     </header>
     <div>
