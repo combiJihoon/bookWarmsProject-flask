@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="{{ url_for('main.update_post', post_id=post.id) }}" method="post">
+        <div class="form-group">
+            <input class="form-control" name="content" id="content" value="{{post.content}}" />
+               
+        </div>
+        <input class="btn btn-primary" type="submit" value="수정완료">
+    </form>
+
+{% endblock content %}

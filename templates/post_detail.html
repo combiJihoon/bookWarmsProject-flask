@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 <h2>자세한 글귀</h2>
 {% block content %}
-    <p>작성자 | {{post_data.user_id}}</p>
-    <p>{{post_data.content}}</p>
-    <p>{{post_data.created_at}}</p>
+    <p>작성자 | {{post.user_id}}</p>
+    <p>{{post.content}}</p>
+    <p>{{post.created_at}}</p>
+    {% if session['user_id'] == post.user_id %}
+    <a href="{{ url_for('main.update_post', post_id=post.id)}}">
+        <button type="button" class="btn btn-primary">
+            수정하기
+        </button>
+    </a>
+    {% endif %}
 {% endblock content %}

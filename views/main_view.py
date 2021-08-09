@@ -15,8 +15,8 @@ def home():
 
 @bp.route('/post/<int:post_id>', methods=['GET'])
 def post_detail(post_id):
-    post_data = Post.query.filter_by(id=post_id).first()
-    return render_template('post_detail.html', post_data=post_data)
+    post = Post.query.filter_by(id=post_id).first()
+    return render_template('post_detail.html', post=post)
 
 
 @bp.route('/create_post', methods=['POST'])
@@ -37,8 +37,24 @@ def create_post():
 def create_try():
     return render_template('post_create.html')
 
-# def update_post():
 
+@bp.route('/update_post/<int:post_id>', methods=['POST'])
+def update_post(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+
+    content = request.form['content']
+    post.content = content
+
+    db.session.commit()
+
+    return redirect(url_for('main.post_detail', post_id=post.id))
+
+
+@bp.route('/update_post/<int:post_id>', methods=['GET'])
+def update_try(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+
+    return render_template('post_update.html', post=post)
 
 # def delete_post():
 
