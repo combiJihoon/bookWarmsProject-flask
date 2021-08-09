@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if session['user_id'] %}
+<form action="{{ url_for('main.create_post') }}" method="post">
+    <div class="form-group">
+        <input class="form-control" name="content" id="content" placeholder="당신의 글귀를 남겨주세요!">
+    </div>
+    <input class="btn btn-primary" type="submit" value="글귀 등록하기">
+</form>
+{% else %}
+    <p>로그인 후 이용 가능합니다.</p>
+{% endif %}
+{% endblock content %}
