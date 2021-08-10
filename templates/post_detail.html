@@ -2,6 +2,7 @@
 <h2>자세한 글귀</h2>
 {% block content %}
     <p>작성자 | {{post.user_id}}</p>
+    <p>{{post.title}}</p>
     <p>{{post.content}}</p>
     <p>{{post.created_at}}</p>
     {% if session['user_id'] == post.user_id %}

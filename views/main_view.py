@@ -22,10 +22,11 @@ def post_detail(post_id):
 @bp.route('/create_post', methods=['POST'])
 def create_post():
     content = request.form['content']
+    title = request.form['title']
     # join 이용해 닉네임으로 고치기
     user_id = session['user_id']
 
-    post = Post(user_id, content)
+    post = Post(user_id, title, content)
 
     db.session.add(post)
     db.session.commit()
@@ -43,6 +44,9 @@ def update_post(post_id):
     post = Post.query.filter_by(id=post_id).first()
 
     content = request.form['content']
+    title = request.form['title']
+
+    post.title = title
     post.content = content
 
     db.session.commit()
