@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}" />
+{% endblock style %}
 {% block content %}
     <h3>환영합니다!</h3>
     <h2>글귀 목록</h2>
@@ -10,18 +13,21 @@
     </a>
 
     {% if post_list %}
+    <div class="post_container">
         {% for post in post_list %}
-        <ul>
-        <div>
-            <a href="{{ url_for('main.post_detail', post_id=post.id)}}">
-                <span>{{post.title}}</span>
-            </a>
-            <span>작성날짜 : {{post.created_at}}</span>
-        </div>
-        </ul>
+        <div class="post"><a href="{{ url_for('main.post_detail', post_id=post.id)}}">
+                <h2 class="title">{{post.title}}</h2>
+                <p class="date">{{post.created_at}}</p>
+                <p class="text">{{post.content|slice(100)}}</p>
+            </a></div>
         {% endfor %}
+    </div>
     {% else %}
-        <p>작성된 글이 없습니다.</p>
-    {% endif %}    
+    <div class="blank">
+        <p>보여줄 글이 없어요.<br>첫 글을 작성해 보세요!</p>
+    </div>
+{% endif %}
+
 
 {% endblock content %}
+
