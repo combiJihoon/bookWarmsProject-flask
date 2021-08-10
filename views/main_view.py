@@ -116,15 +116,22 @@ def register():
     # 등록된 사용자가 아닐 경우 가입 시작
     if not user:
         tmp_pw = request.form['user_pw']
+        user_pw_check = request.form['user_pw_check']
         if len(tmp_pw) < 8:
             flash('비밀번호는 9자리 이상이어야 합니다.')
             return redirect(url_for('main.join'))
-            # 패스워드 해쉬
+
+        elif tmp_pw != user_pw_check:
+            flash('비밀번호가 일치하지 않습니다.')
+            return redirect(url_for('main.join'))
+
+        # 패스워드 해쉬
         user_pw = hashpw(tmp_pw.encode('utf-8'), gensalt())
+        user_name = request.form['user_name']
         user_nickname = request.form['user_nickname']
         user_email = request.form['user_email']
 
-        user = User(user_id=user_id, user_pw=user_pw,
+        user = User(user_id=user_id, user_pw=user_pw, user_name=user_name,
                     user_nickname=user_nickname, user_email=user_email)
 
         db.session.add(user)
