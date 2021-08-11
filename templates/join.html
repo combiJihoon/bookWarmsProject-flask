@@ -4,7 +4,7 @@
 {% endblock style %}
 {% block content %}
 <div class="container">
-    <form id="signup" action="{{url_for('main.join')}}" method="post">
+    <form id="signup" action="{{url_for('main.join')}}" method="post"> {{form.csrf_token}}
         <div class="header">
             <h3>회원가입</h3>
         </div>

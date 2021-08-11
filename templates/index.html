@@ -19,8 +19,8 @@
         <a href="{{ url_for('main.post_detail', post_id=post.id)}}">
             <div class="post">
                 <h2 class="title">{{post.title}}</h2>
-                <p class="date">{{post.created_at}}</p>
                 <p class="text">{{post.content|slice(100)}}</p>
+                <p class="date">{{post.created_at}}</p>
             </div>
         </a>
         {% endfor %}
