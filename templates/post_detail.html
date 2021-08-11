@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
-<h2>자세한 글귀</h2>
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='post_detail.css') }}">
+{% endblock style %}
+
 {% block content %}
-    <p>작성자 | {{post.user_id}}</p>
-    <p>{{post.title}}</p>
-    <p>{{post.content}}</p>
-    <p>{{post.created_at}}</p>
+    <div class="container">
+        <h1 class="title">{{post.title}}</h1>
+        <p class="date">{{post.created_at}}</p>
+        <p class="date">작성자 | {{post.user_id}}</p>
+    </div>
+
+    <div class="content">
+        <p class="text">{{post.content}}</p>
+    </div>
     {% if session['user_id'] == post.user_id %}
     <a href="{{ url_for('main.update_post', post_id=post.id)}}">
         <button type="button" class="btn btn-primary">

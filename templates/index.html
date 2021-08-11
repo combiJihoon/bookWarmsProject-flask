@@ -3,11 +3,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}" />
 {% endblock style %}
 {% block content %}
+    <div class="conatainer"></div>
     <h3>환영합니다!</h3>
     <h2>글귀 목록</h2>
 
     <a href="{{ url_for('main.create_post')}}">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn_post">
             글귀 작성하기
         </button>
     </a>
@@ -15,11 +16,13 @@
     {% if post_list %}
     <div class="post_container">
         {% for post in post_list %}
-        <div class="post"><a href="{{ url_for('main.post_detail', post_id=post.id)}}">
+        <a href="{{ url_for('main.post_detail', post_id=post.id)}}">
+            <div class="post">
                 <h2 class="title">{{post.title}}</h2>
                 <p class="date">{{post.created_at}}</p>
                 <p class="text">{{post.content|slice(100)}}</p>
-            </a></div>
+            </div>
+        </a>
         {% endfor %}
     </div>
     {% else %}
