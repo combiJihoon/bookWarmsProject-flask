@@ -4,12 +4,13 @@
 {% endblock style %}
 {% block content %}
 <div class="container">
-    <form id="signup" action="{{url_for('main.join')}}" method="post"> {{form.csrf_token}}
-        <div class="header">
-            <h3>회원가입</h3>
-        </div>
-        <div class="sep"></div>
-        <div class="inputs">
+    <div class="header">
+        <h3>회원가입</h3>
+    </div>
+    <div class="sep"></div>
+
+    <div class="inputs">
+        <form id="signup" action="{{url_for('main.join')}}" method="post">
             <input type="id" placeholder="아이디를 입력하세요." name="user_id" autofocus />
             <input type="password" placeholder="비밀번호를 입력하세요." name="user_pw" />
             <input type="password" placeholder="비밀번호를 다시 한 번 입력하세요." name="user_pw_check" />
@@ -17,7 +18,7 @@
             <input type="email" placeholder="이메일을 입력하세요." name="user_email" />
             <input type="text" placeholder="닉네임을 입력하세요." name="user_nickname" />
             <input id="submit" type="submit" value="가입하기">
-        </div>
-    </form>
+         </form>
+    </div>
 ​</div>
 {% endblock content %}

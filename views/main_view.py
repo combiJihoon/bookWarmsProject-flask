@@ -1,5 +1,8 @@
-# 7/14 수요일 실습 강의 참고하기
+# TODO 장르 카테고리, 책 제목 모델 추가하기, 책 API 가져오기
+# TODO 다 읽은 것, 현재 진행형 카테고리 추가
+# TODO <form id="signup" action="{{url_for('main.join')}}" method="post">{{form.csrf_token}} 해결하기
 from flask import Blueprint, render_template, url_for, request, session, flash, g
+# from flask_wtf import csrf
 from model import *
 from werkzeug.utils import redirect
 from bcrypt import hashpw, checkpw, gensalt
@@ -31,6 +34,7 @@ def create_post():
     db.session.add(post)
     db.session.commit()
 
+    flash('성공적으로 작성 되었습니다!')
     return redirect(url_for('main.post_detail', post_id=post.id))
 
 
@@ -51,6 +55,7 @@ def update_post(post_id):
 
     db.session.commit()
 
+    flash('성공적으로 수정 되었습니다!')
     return redirect(url_for('main.post_detail', post_id=post.id))
 
 
@@ -87,11 +92,11 @@ def login():
     if not user_data:
         flash("존재하지 않는 아이디입니다.")
         # user_id 다시 그대로 넘겨주기
-        return redirect(url_for('main.login.try'))
+        return redirect(url_for('main.login_try'))
 
     elif not checkpw(user_pw.encode('utf-8'), user_data.user_pw):
         flash("비밀번호가 일치하지 않습니다.")
-        return redirect(url_for('main.login.try'))
+        return redirect(url_for('main.login_try'))
     else:
         session.clear()
 
@@ -105,6 +110,7 @@ def login():
 @bp.route('/logout', methods=['GET'])
 def logout():
     session.clear()
+    flash('로그아웃 되었습니다.')
     return redirect(url_for('main.home'))
 
 
@@ -116,10 +122,25 @@ def join():
 @bp.route('/join', methods=['POST'])
 def register():
     user_id = request.form['user_id']
+    tmp_pw = request.form['user_pw']
+
     user = User.query.filter_by(user_id=user_id).first()
+
+    # 비밀번호 규칙 :8자리 이상(4자리 이상 문자 + 2자리 이상 숫자 + 2자리 이상 특수문자)
+    check = [0] * len(tmp_pw)
+    for i in range(len(tmp_pw)):
+        if tmp_pw[i].isdigit():
+            check[i] = 'digit'
+        elif tmp_pw[i].isalpha():
+            check[i] = 'alpha'
+        else:
+            check[i] = 'sign'
+    if check.count('digit') < 2 or check.count('alpha') < 4 or check.count('sign') < 2:
+        flash('비밀번호는 4자리 이상의 문자, 2자리 이상의 숫자, 2자리 이상의 특수문자가 포함되어야 합니다.')
+        return redirect(url_for('main.join'))
+
     # 등록된 사용자가 아닐 경우 가입 시작
     if not user:
-        tmp_pw = request.form['user_pw']
         user_pw_check = request.form['user_pw_check']
         if len(tmp_pw) < 8:
             flash('비밀번호는 9자리 이상이어야 합니다.')
