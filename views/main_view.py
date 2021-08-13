@@ -66,7 +66,7 @@ def update_try(post_id):
     return render_template('post_update.html', post=post)
 
 
-@bp.route('/delete-post/<int:post_id>')
+@bp.route('/delete-post/<int:post_id>', methods=['POST'])
 def delete_post(post_id):
     post = Post.query.filter_by(id=post_id).first()
 
