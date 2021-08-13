@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='post_detail.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='post_detail.css') }}">
 {% endblock style %}
+{% block js %}
+    <script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
+{% endblock js %}
 
 {% block content %}
     <div class="container">
@@ -19,5 +22,44 @@
             수정하기
         </button>
     </a>
+ 
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-primary" id="delete-btn">삭제하기</button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="delete-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    정말 삭제하시겠습니까?
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('main.delete_post', post_id=post.id)}}">
+                        <button type="button" class="btn btn-secondary">네</button>
+                    </a>
+                    <a href="{{ url_for('main.post_detail', post_id=post.id)}}">
+                        <button type="button" class="btn btn-primary">아니요</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endif %}
 {% endblock content %}
+{% block jscontent %}
+    <script>
+        $(document).ready(function () {
+            $("#delete-btn").click(function () {
+                $("#delete-modal").modal();
+            });
+        });
+    </script>
+{% endblock jscontent %}
+
+
+
+
+
+
+
+

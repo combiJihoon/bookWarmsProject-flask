@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}" />
     {% block style %}{% endblock style %}
+    {% block js %}{% endblock js %}
     <title>책벌레</title>
 </head>
 <body>
@@ -43,19 +44,25 @@
             </nav>
         </div>
     </header>
+    <div id="flash">
+        {% for message in get_flashed_messages() %}
+        <div class="flash alert alert-info">
+            {{message}}
+        </div>
+        {% endfor %}
+    </div>
     <div id="content">
-            {% for message in get_flashed_messages() %}
-                <div class="flash alert alert-info">
-                    {{message}}
-                </div>
-            {% endfor %}
-        {% block content %}{% endblock content %}
+
+    {% block content %}{% endblock content %}
     </div>
     <div id="footer">
         <div class="footer">
             <p>책벌레</p>
         </div>
     </div>
+
+    {% block jscontent %}{% endblock jscontent %}
+
 </body>
 </html>
 

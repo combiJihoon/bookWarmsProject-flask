@@ -22,7 +22,7 @@ def post_detail(post_id):
     return render_template('post_detail.html', post=post)
 
 
-@bp.route('/create_post', methods=['POST'])
+@bp.route('/create-post', methods=['POST'])
 def create_post():
     content = request.form['content']
     title = request.form['title']
@@ -38,12 +38,12 @@ def create_post():
     return redirect(url_for('main.post_detail', post_id=post.id))
 
 
-@bp.route('/create_post', methods=['GET'])
+@bp.route('/create-post', methods=['GET'])
 def create_try():
     return render_template('post_create.html')
 
 
-@bp.route('/update_post/<int:post_id>', methods=['POST'])
+@bp.route('/update-post/<int:post_id>', methods=['POST'])
 def update_post(post_id):
     post = Post.query.filter_by(id=post_id).first()
 
@@ -59,13 +59,22 @@ def update_post(post_id):
     return redirect(url_for('main.post_detail', post_id=post.id))
 
 
-@bp.route('/update_post/<int:post_id>', methods=['GET'])
+@bp.route('/update-post/<int:post_id>', methods=['GET'])
 def update_try(post_id):
     post = Post.query.filter_by(id=post_id).first()
 
     return render_template('post_update.html', post=post)
 
-# def delete_post():
+
+@bp.route('/delete-post/<int:post_id>')
+def delete_post(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+
+    db.session.delete(post)
+    db.session.commit()
+
+    flash('정상적으로 삭제 되었습니다.')
+    return redirect(url_for('main.post_list'))
 
     # 로그인 기능 구현
     # @bp.before_app_request
