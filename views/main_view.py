@@ -66,7 +66,7 @@ def update_try(post_id):
     return render_template('post_update.html', post=post)
 
 
-@bp.route('/delete-post/<int:post_id>', methods=['POST'])
+@bp.route('/delete-post/<int:post_id>')
 def delete_post(post_id):
     post = Post.query.filter_by(id=post_id).first()
 
@@ -74,16 +74,7 @@ def delete_post(post_id):
     db.session.commit()
 
     flash('정상적으로 삭제 되었습니다.')
-    return redirect(url_for('main.post_list'))
-
-    # 로그인 기능 구현
-    # @bp.before_app_request
-    # def load_logged_in_user():
-    #     user_id = session['user_id']
-    #     if user_id is None:
-    #         g.user = None
-    #     else:
-    #         g.user = User.query.filter_by(user_id=user_id).first()
+    return redirect(url_for('main.home'))
 
 
 @bp.route('/login', methods=('GET',))
