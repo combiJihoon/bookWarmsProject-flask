@@ -10,7 +10,7 @@
             <div class="post">
                 <h2 class="title">{{post.title}}</h2>
                 <p class="text">{{post.content[:50]}}</p>
-                <p class="date">{{post.created_at}}</p>
+                <p class="date">{{post.created_at.strftime('%Y-%M-%d %H:%M:%S')}}</p>
             </div>
         </a>
         {% endfor %}
