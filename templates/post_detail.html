@@ -17,49 +17,13 @@
         <p class="text">{{post.content}}</p>
     </div>
     {% if session['user_id'] == post.user_id %}
-    <a href="{{ url_for('main.update_post', post_id=post.id)}}">
-        <button type="button" class="btn btn-primary">
-            수정하기
-        </button>
-    </a>
- 
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-primary" id="delete-btn">삭제하기</button>
-
-    <!-- The Modal -->
-    <div class="modal fade" id="delete-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    정말 삭제하시겠습니까?
-                </div>
-                <div class="modal-footer">
-                    <a href="{{ url_for('main.delete_post', post_id=post.id)}}">
-                        <button type="button" class="btn btn-secondary">네</button>
-                    </a>
-                    <a href="{{ url_for('main.post_detail', post_id=post.id)}}">
-                        <button type="button" class="btn btn-primary">아니요</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <a href="{{ url_for('post.update_post', post_id=post.id)}}">
+            <button type="button" class="btn btn-primary">
+                수정하기
+            </button>
+        </a>
+        <a href="{{ url_for('post.delete_post', post_id=post.id)}}">
+            <button type="button" class="btn btn-primary" id="delete-btn">삭제하기</button>
+        </a>
     {% endif %}
 {% endblock content %}
-{% block jscontent %}
-    <script>
-        $(document).ready(function () {
-            $("#delete-btn").click(function () {
-                $("#delete-modal").modal();
-            });
-        });
-    </script>
-{% endblock jscontent %}
-
-
-
-
-
-
-
-

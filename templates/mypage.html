@@ -1,7 +1,4 @@
-{% extends 'base.html' %}
-{% block style %}
-    
-{% endblock style %}
+{% extends './base.html' %}
 {% block content %}
     {% if post_list %}
     <div class="post_container">
@@ -19,8 +16,5 @@
     <div class="blank">
         <p>보여줄 글이 없어요.<br>첫 글을 작성해 보세요!</p>
     </div>
-{% endif %}
-
-
+    {% endif %}
 {% endblock content %}
-

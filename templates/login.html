@@ -4,7 +4,7 @@
 {% endblock style %}
 {% block content %}
     <div class="wrapper">
-        <form class="form-signin" action="{{url_for('main.login')}}" method="post">
+        <form class="form-signin" action="{{url_for('auth.login')}}" method="post">
             <h2 class="form-signin-heading">로그인 하기</h2>
             <input type="text" class="form-control" name="user_id" placeholder="아이디를 입력하세요" required=""
                 autofocus="" />

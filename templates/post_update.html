@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 {% block content %}
-    <form action="{{ url_for('main.update_post', post_id=post.id) }}" method="post">
+    <form action="{{ url_for('post.update_post', post_id=post.id) }}" method="post">
         <div class="form-group">
             <input class="form-control" name="title" id="title" value="{{post.title}}" />
             <input class="form-control" name="content" id="content" value="{{post.content}}" />
