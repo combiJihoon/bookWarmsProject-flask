@@ -30,7 +30,7 @@ body {
     min-height: 100%;
     margin: 0;
     padding: 0;
-    background-color: rgb(253, 253, 253);
+    background-color: #f2f5f8;
     background: url(../images/bg.jpg) no-repeat center top/cover;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
@@ -49,8 +49,6 @@ nav {
 
 #nav-title {
     margin-left: 60px;
-
-
 }
 
 /* #nav-login-logout {
@@ -59,6 +57,11 @@ nav {
 
 .nav-link {
     color: black;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: rgb(12, 35, 170);
 }
 
 
@@ -179,7 +182,7 @@ h1 img {
 
 .btn_post:hover {
     color: #ccc;
-    background-color: rgb(52, 58, 64);
+    background-color: rgb(12, 35, 170);
     transition: all 0.2s;
 }
 
@@ -194,7 +197,7 @@ h1 img {
 }
 
 .post {
-    /* background: #d5deff; */
+    background: #ffff;
     padding: 30px 29px 40px 27px;
     height: 300px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
