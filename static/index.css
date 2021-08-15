@@ -49,11 +49,19 @@ nav {
 
 #nav-title {
     margin-left: 60px;
+    margin-right: auto;
+    font-size: 20px;
 }
 
-/* #nav-login-logout {
-    
-} */
+#nav-right {
+    margin-right: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    padding-right: 5px;
+}
 
 .nav-link {
     color: black;
@@ -63,6 +71,49 @@ nav {
 .nav-link:hover {
     color: rgb(12, 35, 170);
 }
+
+/* Add a black background color to the top navigation */
+.topnav {
+    height: 70px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    color: rgb(12, 35, 170);
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    color: rgb(12, 35, 170);
+}
+
+.topnav-left {
+    float: left;
+    display: flex;
+    align-items: center
+}
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+    float: right;
+    display: flex;
+    align-items: center
+} 
+
+
+
 
 
 #header {
